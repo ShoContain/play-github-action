@@ -1,0 +1,17 @@
+{
+  "name": "github-actions",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint --fix '**/**/*.js' --ignore-path .gitignore",
+    "test": "mocha"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "@cybozu/eslint-config": "^18.0.0",
+    "eslint": "^8.34.0",
+    "mocha": "^10.2.0",
+    "prettier": "^2.8.4"
+  }
+}
