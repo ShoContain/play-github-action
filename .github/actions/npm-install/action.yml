@@ -1,0 +1,27 @@
+name: Npm Install
+description: "Install all npm dependencits, caches them and restores if necessary"
+env: 
+  node_version: v18.x
+runs:
+  using: composite
+  steps:
+    - name: Use Node ${{ env.node_version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ env.node_version }}
+        cache: 'npm'
+    - name: node_modules cache
+      id: node-modules-cache
+      uses: actions/cache@v3
+      env:
+        cache-name: node-modules-npm
+        cache-key: ${{ env.node_version }}-${{ hashFiles('package-lock.json') }}
+      with:
+        path: |
+          **/node_modules/**
+        key: ${{ runner.os }}-${{ env.cache-name }}-${{ env.cache-key }}
+        restore-keys: ${{ runner.os }}-${{ env.cache-name }}-
+    - name: Npm install
+      shell: bash
+      if: steps.node-modules-cache.outputs.cache-hit != 'true'
+      run: npm ci 
