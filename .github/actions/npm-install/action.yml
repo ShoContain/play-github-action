@@ -14,8 +14,8 @@ runs:
       id: node-modules-cache
       uses: actions/cache@v3
       env:
-        cache-name: node-modules-npm
-        cache-key: ${{ env.node_version }}-${{ hashFiles('package-lock.json') }}
+        cache-name: cache-node-modules
+        cache-key: ${{ env.node_version }}-${{ hashFiles('**/package-lock.json') }}
       with:
         path: |
           **/node_modules/**
