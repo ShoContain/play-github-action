@@ -8,8 +8,7 @@ jobs:
      - uses: actions/setup-node@v3
        with:
           node-version: 18.x
-     - name: Install devendencies
-       run: npm ci
+     - uses: ./.github/actions/npm-install
      - name: Lint
        run: npm run lint
 
